@@ -7882,10 +7882,10 @@ MonoBehaviour:
   m_text: "Game by PapaPolski\n\nMusic:\nWestern by QubeSounds\n\nSFX:\nSad ghost
     by moogsy\nUmph! by Topschool\nheavy swallow.wav by DrMaysta\nWater Filled Cup
     by Daddy s Music\nDigging v1 by wormletter\norecart move 1 by Amusquiz99\nCrash
-    by NeoSpica\n\nMusic & SFX from Pixabay.com\n\nSprites:\nWasd Keys - Undertale
-    Napstablook Clipart from pikpng.com\nComputer Mouse Icon from pngfind.com\n\nAll
-    other assets by Kenney \n(kenney.nl/assets)\n\nSoftware used:\nUnity 2020, Audacity,
-    Photopea"
+    by NeoSpica\nGhost sign3 by HorrorAudio\n\nMusic & SFX from Pixabay.com\n\nSprites:\nWasd
+    Keys - Undertale Napstablook Clipart from pikpng.com\nComputer Mouse Icon from
+    pngfind.com\n\nAll other assets by Kenney \n(kenney.nl/assets)\n\nSoftware used:\nUnity
+    2020, Audacity, Photopea"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ca4be33ab15bdc46a478139261a999a, type: 2}
   m_sharedMaterial: {fileID: 4617904512105312331, guid: 0ca4be33ab15bdc46a478139261a999a, type: 2}
