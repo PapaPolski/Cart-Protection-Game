@@ -30,10 +30,13 @@ public class Spear : MonoBehaviour
         if(checkingMouse)
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Fire();
-            checkingMouse = false;
+            if (player.currentHealth > 0)
+            {
+                Fire();
+                checkingMouse = false;
+            }
         }
     }
 
