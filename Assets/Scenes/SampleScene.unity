@@ -20123,7 +20123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1421929739
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21139,7 +21139,7 @@ MonoBehaviour:
   equipSpearAudio: {fileID: 8300000, guid: 58f3689869e56f147ac92cf9c8fcd8a5, type: 3}
   pickupTreasureAudio: {fileID: 8300000, guid: 2ca7dd872dd9d884c9c2b9ca83ee3691, type: 3}
   waterTapAudio: {fileID: 8300000, guid: 8ecf316258e00234d82e509788e816ae, type: 3}
-  ghostKilledAudio: {fileID: 8300000, guid: d96516fc118460546b277a89b3b627af, type: 3}
+  ghostKilledAudio: {fileID: 8300000, guid: 777bf5a8b70ea4f4f84db4040aa37f50, type: 3}
   healthUpAudio: {fileID: 8300000, guid: 69bfc5967b2bf8946917603f6d2f798a, type: 3}
   damageAudio: {fileID: 8300000, guid: 13e6aa37fcd0271409b6a4aab22f2a94, type: 3}
 --- !u!61 &1560314372

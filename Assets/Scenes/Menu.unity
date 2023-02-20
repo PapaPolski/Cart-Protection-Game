@@ -3838,7 +3838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &589787124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7856,7 +7856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 10.5, y: 39}
+  m_AnchoredPosition: {x: 10.5, y: 18}
   m_SizeDelta: {x: 901, y: 465}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1502868802
@@ -7882,8 +7882,10 @@ MonoBehaviour:
   m_text: "Game by PapaPolski\n\nMusic:\nWestern by QubeSounds\n\nSFX:\nSad ghost
     by moogsy\nUmph! by Topschool\nheavy swallow.wav by DrMaysta\nWater Filled Cup
     by Daddy s Music\nDigging v1 by wormletter\norecart move 1 by Amusquiz99\nCrash
-    by NeoSpica\n\nMusic & SFX from Pixabay.com\n\nAll other assets by Kenney \n(kenney.nl/assets)\n\nSoftware
-    used:\nUnity 2020, Audacity, Photopea"
+    by NeoSpica\n\nMusic & SFX from Pixabay.com\n\nSprites:\nWasd Keys - Undertale
+    Napstablook Clipart from pikpng.com\nComputer Mouse Icon from pngfind.com\n\nAll
+    other assets by Kenney \n(kenney.nl/assets)\n\nSoftware used:\nUnity 2020, Audacity,
+    Photopea"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ca4be33ab15bdc46a478139261a999a, type: 2}
   m_sharedMaterial: {fileID: 4617904512105312331, guid: 0ca4be33ab15bdc46a478139261a999a, type: 2}
@@ -7910,8 +7912,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15.5
+  m_fontSizeBase: 15.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
