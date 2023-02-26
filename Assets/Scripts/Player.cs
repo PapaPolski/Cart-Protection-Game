@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     {
         aS = GetComponent<AudioSource>();
         character = GetComponent<SpriteRenderer>();
-        character.sprite = CharacterSelector.instance.characters[CharacterSelector.instance.currentCharacterSelected];
+        character.sprite = CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].characterSprite;
         speed = 8f;
         gatheringTimeMax = 1f;
         currentTask = 0;
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         {
             if (currentGatheringTime < gatheringTimeMax)
             {
-                currentGatheringTime += Time.deltaTime;
+                currentGatheringTime += Time.deltaTime * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].craftSpeedModifier;
             }
 
 
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
             _Horizontal *= _MoveLimiter;
             _Vertical *= _MoveLimiter;
         }
-        rb2d.velocity = new Vector2(_Horizontal * speed, _Vertical * speed);
+        rb2d.velocity = new Vector2(_Horizontal * speed, _Vertical * speed) * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].speed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

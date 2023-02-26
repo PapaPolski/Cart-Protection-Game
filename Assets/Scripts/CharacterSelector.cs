@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterSelector : MonoBehaviour
 {
     public static CharacterSelector instance { get; private set; }
-    public Sprite[] characters;
     public int currentCharacterSelected;
     public Image characterDisplay;
+
+    public Character[] characterClasses;
+    public TextMeshProUGUI characterName;
 
     private void Awake()
     {
@@ -28,20 +31,20 @@ public class CharacterSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(characters.Length);
         currentCharacterSelected = 0;
-        characterDisplay.sprite = characters[currentCharacterSelected];
+        characterDisplay.sprite = characterClasses[currentCharacterSelected].characterSprite;
+        characterName.text = characterClasses[currentCharacterSelected].characterName;
     }
 
     public void ChangeCurrentCharacter(bool positive)
     {
         if(positive)
         {
-            if (currentCharacterSelected < (characters.Length-1))
+            if (currentCharacterSelected < (characterClasses.Length-1))
             {
                 currentCharacterSelected++;
             }
-            else if (currentCharacterSelected == (characters.Length-1))
+            else if (currentCharacterSelected == (characterClasses.Length-1))
             {
                 currentCharacterSelected = 0;
             }
@@ -54,10 +57,11 @@ public class CharacterSelector : MonoBehaviour
             }
             else if(currentCharacterSelected == 0)
             {
-                currentCharacterSelected = (characters.Length -1);
+                currentCharacterSelected = (characterClasses.Length -1);
             }
         }
         Debug.Log("Current Character selected: " + currentCharacterSelected);
-        characterDisplay.sprite = characters[currentCharacterSelected];
+        characterDisplay.sprite = characterClasses[currentCharacterSelected].characterSprite;
+        characterName.text = characterClasses[currentCharacterSelected].characterName;
     }
 }
