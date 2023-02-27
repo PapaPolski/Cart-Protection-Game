@@ -15,6 +15,7 @@ public class CharacterSelector : MonoBehaviour
     public GameObject startButton, unlockCondition, characterPanel;
 
     public TextMeshProUGUI flavorText;
+    public StatBlock speedStat, craftStat, cartStat;
 
     private void Awake()
     {
@@ -141,5 +142,8 @@ public class CharacterSelector : MonoBehaviour
     {
         flavorText.text = characterClasses[currentCharacterSelected].flavorText;
         unlockCondition.GetComponent<TextMeshProUGUI>().text = characterClasses[currentCharacterSelected].unlockText;
+
+        speedStat.OnCharacterChange(characterClasses[currentCharacterSelected].speed);
+
     }
 }
