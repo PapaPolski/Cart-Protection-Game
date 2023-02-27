@@ -19,3 +19,8 @@ MonoBehaviour:
   cartSpeedModifier: 1
   scoreModifier: 1
   specialAbility: 2
+  unlockedFromStart: 1
+  unlockConditionAmount: 0
+  unlockText: 
+  playerPrefKey: 
+  flavorText: Previously an opera singer

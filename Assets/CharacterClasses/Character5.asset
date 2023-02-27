@@ -19,3 +19,8 @@ MonoBehaviour:
   cartSpeedModifier: 1
   scoreModifier: 1
   specialAbility: 2
+  unlockedFromStart: 0
+  unlockConditionAmount: 100
+  unlockText: Eat 500 applie pies
+  playerPrefKey: Hiscore
+  flavorText: 'test text text test '

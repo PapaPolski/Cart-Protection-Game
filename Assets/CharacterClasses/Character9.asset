@@ -19,3 +19,8 @@ MonoBehaviour:
   cartSpeedModifier: 1
   scoreModifier: 1
   specialAbility: 2
+  unlockedFromStart: 0
+  unlockConditionAmount: 500
+  unlockText: engage in political discourse on twitter
+  playerPrefKey: Hiscore
+  flavorText: 'test text text test '

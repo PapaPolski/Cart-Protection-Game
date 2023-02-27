@@ -13,6 +13,11 @@ public class Character : ScriptableObject
     public float cartSpeedModifier;
     public float scoreModifier;
     public SpecialAbility specialAbility;
+    public bool unlockedFromStart;
+    public int unlockConditionAmount;
+    public string unlockText;
+    public string playerPrefKey;
+    public string flavorText;
 }
 
 public enum SpecialAbility
@@ -20,6 +25,6 @@ public enum SpecialAbility
     AutoReequip,
     PauseUnpauseCart,
     None,
-    Dodge,
-
+    Dodge
 }
+

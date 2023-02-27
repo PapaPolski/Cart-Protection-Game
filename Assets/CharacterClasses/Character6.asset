@@ -19,3 +19,8 @@ MonoBehaviour:
   cartSpeedModifier: 1
   scoreModifier: 1
   specialAbility: 2
+  unlockedFromStart: 0
+  unlockConditionAmount: 500
+  unlockText: Kill and dethrone god
+  playerPrefKey: Hiscore
+  flavorText: 'test text text test '

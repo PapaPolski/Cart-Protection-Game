@@ -219,7 +219,9 @@ public class Player : MonoBehaviour
 
     public void ChangeScore(int amount, string reason)
     {
-        currentScore += amount;
+        float scoreWithMultiplier = amount * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].scoreModifier;
+        int scoreToAdd = Mathf.RoundToInt(scoreWithMultiplier);
+        currentScore += scoreToAdd;
         scoreText.text = currentScore.ToString("0000");
         scoreLog = scoreLog+ reason + ": " + amount + "\n";
     }
@@ -436,7 +438,7 @@ public class Player : MonoBehaviour
         HighScoreCalc("TotalTreasure", totalTreasureFound, treasureHighScore, treasureHigh, false);
 
         gameOverPanel.SetActive(true);
-       // scoreLogText.text = scoreLog;
+        // scoreLogText.text = scoreLog;
         finalScoreText.text = "Final Score: " + currentScore.ToString("0000");
         Cursor.visible = true;
         finalDeathReason.text = reason;
