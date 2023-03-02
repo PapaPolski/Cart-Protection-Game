@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     int currentTask;
     GameObject currentGrave, cart;
     public int maxHealth, currentHealth, highScore;
+    bool canTakeDamage;
 
     int currentScore, treasureChance;
     public TextMeshProUGUI scoreText, upgradeText, finalTreasureText, finalGhostsText, finalLapsText, finalScoreText, finalDeathReason, highScoreText, ghostsHigh, lapsHigh, treasureHigh, scoreLogText;
@@ -37,6 +38,9 @@ public class Player : MonoBehaviour
 
     float coolDownAbilityTimer;
     bool canAbilityBeUsed;
+
+    bool dodging;
+    float dodgeSpeedMultiplier;
 
     Character characterInUse;
 
@@ -76,6 +80,8 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         coolDownAbilityTimer = 0f;
         canAbilityBeUsed = true;
+        dodgeSpeedMultiplier = 1;
+        canTakeDamage = true;
     }
 
     // Update is called once per frame
@@ -126,9 +132,21 @@ public class Player : MonoBehaviour
             {
                 canAbilityBeUsed = true;
                 coolDownAbilityTimer = 0;
+                dodging = false;
                 Debug.Log("Ability Ready!");
             }
         }
+        if(dodging)
+        {
+            dodgeSpeedMultiplier = 2f;
+            canTakeDamage = false;
+        }
+        else
+        {
+            dodgeSpeedMultiplier = 1f;
+            canTakeDamage = true;
+        }
+
     }
 
     private void FixedUpdate()
@@ -138,7 +156,7 @@ public class Player : MonoBehaviour
             _Horizontal *= _MoveLimiter;
             _Vertical *= _MoveLimiter;
         }
-        rb2d.velocity = new Vector2(_Horizontal * speed, _Vertical * speed) * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].speed;
+        rb2d.velocity = new Vector2(_Horizontal * speed, _Vertical * speed * dodgeSpeedMultiplier) * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].speed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -420,6 +438,10 @@ public class Player : MonoBehaviour
 
     public void ChangeHealth(int amount)
     {
+        if (amount < 0 && !canTakeDamage)
+        {
+            return;
+        }
         currentHealth += amount;
 
         switch (currentHealth)
@@ -521,6 +543,7 @@ public class Player : MonoBehaviour
             case SpecialAbility.None:
                 break;
             case SpecialAbility.Dodge:
+                dodging = true;
                 break;
         }
     }
