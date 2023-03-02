@@ -2305,8 +2305,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203599670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.670167, y: -0.23540711, z: 0.20535766}
-  m_LocalScale: {x: 21.025312, y: 1.1, z: 1}
+  m_LocalPosition: {x: 1.0941, y: -0.23540711, z: 0.20535766}
+  m_LocalScale: {x: 7.1230273, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 155207426}
   m_RootOrder: 7
@@ -20730,6 +20730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSpeed: 0
   animationSpeedMax: 0
+  lastFullAnimationSpeed: 0
   fuelPool: {fileID: 683926235}
   sliderBg: {fileID: 1484582575}
   completedLoops: 0

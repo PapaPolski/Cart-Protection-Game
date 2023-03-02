@@ -35,16 +35,23 @@ public class Player : MonoBehaviour
     public AudioSource aS;
     public AudioClip throwSpearAudio, equipSpearAudio, pickupTreasureAudio, waterTapAudio, ghostKilledAudio, healthUpAudio, damageAudio;
 
+    float coolDownAbilityTimer;
+    bool canAbilityBeUsed;
+
+    Character characterInUse;
+
     private void Awake()
     {
         gameOverPanel.SetActive(false);
+        characterInUse = CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected];
     }
+
     // Start is called before the first frame update
     void Start()
     {
         aS = GetComponent<AudioSource>();
         character = GetComponent<SpriteRenderer>();
-        character.sprite = CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].characterSprite;
+        character.sprite = characterInUse.characterSprite;
         speed = 8f;
         gatheringTimeMax = 1f;
         currentTask = 0;
@@ -67,6 +74,8 @@ public class Player : MonoBehaviour
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         totalTreasureFound = 0;
         Cursor.visible = false;
+        coolDownAbilityTimer = 0f;
+        canAbilityBeUsed = true;
     }
 
     // Update is called once per frame
@@ -79,7 +88,7 @@ public class Player : MonoBehaviour
         {
             if (currentGatheringTime < gatheringTimeMax)
             {
-                currentGatheringTime += Time.deltaTime * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].craftSpeedModifier;
+                currentGatheringTime += Time.deltaTime * characterInUse.craftSpeedModifier;
             }
 
 
@@ -104,6 +113,22 @@ public class Player : MonoBehaviour
 
         if (upgradeTextTimer <= 0)
             upgradeText.text = "";
+
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canAbilityBeUsed)
+        {
+            UseAbility();
+        }
+
+        if(!canAbilityBeUsed)
+        {
+            coolDownAbilityTimer += Time.deltaTime;
+            if(coolDownAbilityTimer >= characterInUse.specialAbilityCooldown)
+            {
+                canAbilityBeUsed = true;
+                coolDownAbilityTimer = 0;
+                Debug.Log("Ability Ready!");
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -219,7 +244,7 @@ public class Player : MonoBehaviour
 
     public void ChangeScore(int amount, string reason)
     {
-        float scoreWithMultiplier = amount * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].scoreModifier;
+        float scoreWithMultiplier = amount * characterInUse.scoreModifier;
         int scoreToAdd = Mathf.RoundToInt(scoreWithMultiplier);
         currentScore += scoreToAdd;
         scoreText.text = currentScore.ToString("0000");
@@ -477,6 +502,28 @@ public class Player : MonoBehaviour
         }
     }
 
+    void UseAbility()
+    {
+        canAbilityBeUsed = false;
+
+        switch (characterInUse.specialAbility)
+        {
+            case SpecialAbility.PauseUnpauseCart:
+                Debug.Log("Pause Unpause!");
+                if (cart.GetComponent<Animator>().speed > 0)
+                    cart.GetComponent<Animator>().speed = 0;
+                else
+                {
+                    cart.GetComponent<Animator>().speed = cart.GetComponent<Cart>().animationSpeed;
+                    Debug.Log("Resetting speed to!" + cart.GetComponent<Cart>().animationSpeed);
+                }  
+                break;
+            case SpecialAbility.None:
+                break;
+            case SpecialAbility.Dodge:
+                break;
+        }
+    }
 
 }
 

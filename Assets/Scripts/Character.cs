@@ -13,6 +13,7 @@ public class Character : ScriptableObject
     public float cartSpeedModifier;
     public float scoreModifier;
     public SpecialAbility specialAbility;
+    public float specialAbilityCooldown;
     public bool unlockedFromStart;
     public int unlockConditionAmount;
     public string unlockText;
