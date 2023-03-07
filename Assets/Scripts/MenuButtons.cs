@@ -24,4 +24,9 @@ public class MenuButtons : MonoBehaviour
         else if(!panel.active)
             panel.SetActive(true);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

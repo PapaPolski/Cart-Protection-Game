@@ -4343,7 +4343,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 906, y: 600}
+  m_ReferenceResolution: {x: 960, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -20730,7 +20730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSpeed: 0
   animationSpeedMax: 0
-  lastFullAnimationSpeed: 0
   fuelPool: {fileID: 683926235}
   sliderBg: {fileID: 1484582575}
   completedLoops: 0

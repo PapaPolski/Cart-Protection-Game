@@ -44,6 +44,9 @@ public class Player : MonoBehaviour
 
     Character characterInUse;
 
+    Scene pauseScene;
+    bool paused;
+
     private void Awake()
     {
         gameOverPanel.SetActive(false);
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        paused = false;
         aS = GetComponent<AudioSource>();
         character = GetComponent<SpriteRenderer>();
         character.sprite = characterInUse.characterSprite;
@@ -146,7 +150,19 @@ public class Player : MonoBehaviour
             dodgeSpeedMultiplier = 1f;
             canTakeDamage = true;
         }
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (paused)
+            {
+                Pause(false);
+                paused = false;
+            }
+            else if (!paused)
+            {
+                Pause(true);
+                paused = true;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -157,6 +173,22 @@ public class Player : MonoBehaviour
             _Vertical *= _MoveLimiter;
         }
         rb2d.velocity = new Vector2(_Horizontal * speed, _Vertical * speed * dodgeSpeedMultiplier) * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].speed;
+    }
+
+    void Pause(bool pausing)
+    {
+        if (pausing)
+        {
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
+            Time.timeScale = 0f;
+            cart.GetComponent<AudioSource>().Stop();
+        }
+        else
+        {
+            SceneManager.UnloadSceneAsync(2);
+            Time.timeScale = 1f;
+            cart.GetComponent<AudioSource>().Play();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -272,7 +304,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Ghost")
+        if (collision.gameObject.tag == "Ghost" && !dodging)
         {
             Debug.Log("Lose health");
             ChangeHealth(-1);

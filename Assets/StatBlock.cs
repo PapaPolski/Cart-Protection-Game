@@ -7,12 +7,6 @@ public class StatBlock : MonoBehaviour
     public GameObject[] statNodes;
     public int[] displayValues;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void OnCharacterChange(float statToDisplay)
     {
         //(currentX - minX) / (maxX - minX)
