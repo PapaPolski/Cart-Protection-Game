@@ -179,13 +179,13 @@ public class Player : MonoBehaviour
     {
         if (pausing)
         {
-            SceneManager.LoadScene(2, LoadSceneMode.Additive);
+            SceneManager.LoadScene(3, LoadSceneMode.Additive);
             Time.timeScale = 0f;
             cart.GetComponent<AudioSource>().Stop();
         }
         else
         {
-            SceneManager.UnloadSceneAsync(2);
+            SceneManager.UnloadSceneAsync(3);
             Time.timeScale = 1f;
             cart.GetComponent<AudioSource>().Play();
         }
