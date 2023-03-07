@@ -87,6 +87,9 @@ public class CharacterSelector : MonoBehaviour
                 case "TotalLaps":
                     CheckPlayerPrefKey("TotalLaps");
                     break;
+                case "TotalGames":
+                    CheckPlayerPrefKey("TotalGames");
+                    break;
             }
         }
     }

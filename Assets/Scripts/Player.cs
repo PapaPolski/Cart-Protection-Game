@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     bool dodging;
     float dodgeSpeedMultiplier;
 
-    Character characterInUse;
+    public Character characterInUse;
 
     Scene pauseScene;
     bool paused;
@@ -194,15 +194,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.name == "WeaponRack" && !hasSpear)
         {
-            if (weaponRack.currentSpearCount > 0)
-            {
-                hasSpear = true;
-                weaponRack.ChangeSpearAmount(-1);
-                Vector3 spawnPosition = gameObject.transform.position;
-                spawnPosition.x += 0.4f;
-                Instantiate(spearPrefab, spawnPosition, Quaternion.identity, this.gameObject.transform);
-                aS.PlayOneShot(equipSpearAudio);
-            }
+            ReequipSpear();
         }
 
         if (collision.gameObject.name == "Anvil")
@@ -380,20 +372,25 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.name == "WeaponRack")
             {
-                if (weaponRack.currentSpearCount > 0 && !hasSpear)
-                {
-                    hasSpear = true;
-                    weaponRack.ChangeSpearAmount(-1);
-                    Vector3 spawnPosition = gameObject.transform.position;
-                    spawnPosition.x += 0.4f;
-                    Instantiate(spearPrefab, spawnPosition, Quaternion.identity, this.gameObject.transform);
-                }
+                ReequipSpear();
             }
         if (collision.gameObject.tag == "Grave")
         {
             currentGrave = collision.gameObject;
         }
     }
+
+    public void ReequipSpear()
+{
+    if (weaponRack.currentSpearCount > 0 && !hasSpear)
+    {
+        hasSpear = true;
+        weaponRack.ChangeSpearAmount(-1);
+        Vector3 spawnPosition = gameObject.transform.position;
+        spawnPosition.x += 0.4f;
+        Instantiate(spearPrefab, spawnPosition, Quaternion.identity, this.gameObject.transform);
+    }
+}
 
     void AddWater()
     {
@@ -523,6 +520,18 @@ public class Player : MonoBehaviour
         finalDeathReason.text = reason;
 
         HighScoreCalc("Hiscore", currentScore, highScore, highScoreText, true);
+        
+        if(PlayerPrefs.HasKey("TotalGames"))
+        {
+            int gamesPlayed = PlayerPrefs.GetInt("TotalGames");
+            PlayerPrefs.SetInt("TotalGames", (gamesPlayed++));
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("TotalGames", 1);
+            PlayerPrefs.Save();
+        }
     }
 
     void HighScoreCalc(string PrefKey, int value, int highscorevalue, TextMeshProUGUI textfield, bool fourDigit)

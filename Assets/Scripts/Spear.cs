@@ -36,6 +36,10 @@ public class Spear : MonoBehaviour
             {
                 Fire();
                 checkingMouse = false;
+                if(player.characterInUse.specialAbility == SpecialAbility.AutoReequip)
+                {
+                    player.ReequipSpear();
+                }
             }
         }
     }
