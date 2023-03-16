@@ -17,6 +17,15 @@ public class MenuButtons : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void LoadSceneAdd(int scene)
+    {
+        SceneManager.LoadScene(scene, LoadSceneMode.Additive);
+    }
+
+    public void UnloadScene(int scene)
+    {
+        SceneManager.UnloadSceneAsync(scene);
+    }
     public void DisplayPanel(GameObject panel)
     {
         if (panel.active)

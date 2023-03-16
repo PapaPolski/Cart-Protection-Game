@@ -32,7 +32,7 @@ public class Spear : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (player.currentHealth > 0)
+            if (player.currentHealth > 0 && !player.paused)
             {
                 Fire();
                 checkingMouse = false;

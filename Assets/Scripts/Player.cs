@@ -44,8 +44,7 @@ public class Player : MonoBehaviour
 
     public Character characterInUse;
 
-    Scene pauseScene;
-    bool paused;
+    public bool paused;
 
     private void Awake()
     {
@@ -179,15 +178,17 @@ public class Player : MonoBehaviour
     {
         if (pausing)
         {
-            SceneManager.LoadScene(3, LoadSceneMode.Additive);
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);
             Time.timeScale = 0f;
             cart.GetComponent<AudioSource>().Stop();
+            Cursor.visible = true;
         }
         else
         {
-            SceneManager.UnloadSceneAsync(3);
+            SceneManager.UnloadSceneAsync(2);
             Time.timeScale = 1f;
             cart.GetComponent<AudioSource>().Play();
+            Cursor.visible = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MouseFollow : MonoBehaviour
 {
-
     Vector3 worldPosition;
     void Update()
     {
