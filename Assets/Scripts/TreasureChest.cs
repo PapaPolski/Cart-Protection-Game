@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class TreasureChest : MonoBehaviour
     AudioSource aS;
     public AudioClip treasureOpenAudio, treasureCloseAudio;
 
+    public List<GameObject> currentTreasuresInScene = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,7 @@ public class TreasureChest : MonoBehaviour
         coolDown = 2f;
         player = GameObject.Find("Player").GetComponent<Player>();
         aS = GetComponent<AudioSource>();
+        currentTreasuresInScene.Clear();
     }
 
 
