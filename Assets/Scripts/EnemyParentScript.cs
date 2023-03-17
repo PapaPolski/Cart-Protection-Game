@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyParentScript : MonoBehaviour
 {
-    public float moveSpeed;
+    public float baseMoveSpeed;
     public int pointValue;
     protected GameObject target;
     protected Player player;
@@ -21,7 +21,7 @@ public class EnemyParentScript : MonoBehaviour
         if (player.currentHealth > 0)
         {
             if (target != null)
-                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, spawner.ghostSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, (baseMoveSpeed * spawner.ghostSpeed * Time.deltaTime));
             else
                 target = null;
         }
@@ -34,8 +34,8 @@ public class EnemyParentScript : MonoBehaviour
 
     public virtual void OnDestroy()
     {
-        float randomChance = Random.Range(0f, 10f);
-
+        //float randomChance = Random.Range(0f, 10f);
+        float randomChance = 6;
         if (randomChance > 5)
         {
             if (this.gameObject.scene.isLoaded)

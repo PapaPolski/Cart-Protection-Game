@@ -8,7 +8,8 @@ public class Spawner : MonoBehaviour
 {
 
     public int totalGhostsSpawned, currentGhostsAlive, maxGhostsAtATime, GhostsPerLevel, ghostsInLevel, remainingGhosts;
-    public GameObject prefab, doorOpen, doorClosed;
+    public GameObject doorOpen, doorClosed;
+    public GameObject ghostPrefab, gremlinPrefab;
     public float spawnRadius;
     Player player;
     public float spawnDelayMin, spawnDelayMax, currentSpawnTimer, spawnDelay, ghostSpeed, ghostSpeedMax;
@@ -22,9 +23,12 @@ public class Spawner : MonoBehaviour
 
     public AudioClip doorOpenAudio, doorCloseAudio, ghostsSpawnAudio;
 
+    TreasureChest tC;
+
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        tC = GameObject.Find("TreasureChest").GetComponent<TreasureChest>();
         totalGhostsSpawned = 0;
         maxGhostsAtATime = 6;
         GhostsPerLevel = 10;
@@ -56,7 +60,12 @@ public class Spawner : MonoBehaviour
                 else if (currentSpawnTimer >= spawnDelay)
                 {
                     if (currentGhostsAlive < maxGhostsAtATime && ghostsInLevel < GhostsPerLevel)
-                        SpawnGhost();
+                    {
+                        if (tC.currentTreasuresInScene.Count > 1)
+                            SpawnEnemy(gremlinPrefab);
+                        else
+                            SpawnEnemy(ghostPrefab);
+                    }
                     else
                     {
                         if (currentGhostsAlive == 0)
@@ -99,15 +108,17 @@ public class Spawner : MonoBehaviour
         return c;
     }
 
-    void SpawnGhost()
+    void SpawnEnemy(GameObject enemyToSpawn)
     {
         aS.PlayOneShot(ghostsSpawnAudio);
         Vector3 pos = RandomCircle(this.transform.position, spawnRadius);
-        Instantiate(prefab, pos, Quaternion.identity);
+        Instantiate(enemyToSpawn, pos, Quaternion.identity);
+        
         totalGhostsSpawned++;
         currentGhostsAlive++;
         ghostsInLevel++;
         spawnDelay = NewSpawnDelay(spawnDelayMin, spawnDelayMax);
+        
         currentSpawnTimer = 0f;
         if(ghostsInLevel == GhostsPerLevel)
         {

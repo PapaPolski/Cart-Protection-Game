@@ -19,6 +19,6 @@ public class Ghost : EnemyParentScript
         spawner.remainingGhosts--;
         spawner.UpdateUI();
         base.OnDestroy();
-        player.ChangeScore(10, "Ghost Killed");
+        player.ChangeScore(pointValue, "Ghost Killed");
     }
 }

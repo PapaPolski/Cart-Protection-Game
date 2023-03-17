@@ -19,6 +19,7 @@ public class Gremlin : EnemyParentScript
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
         if(target == null && hadFirstTarget)
         {
             if(tC.currentTreasuresInScene.Count > 0)
@@ -37,13 +38,29 @@ public class Gremlin : EnemyParentScript
         {
             Vector3 directionToTarget = treasures[i].transform.position - curPos;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if(dSqrToTarget < closestDistanceSqe)
+            if(dSqrToTarget < closestDistanceSqe && !target.GetComponent<Treasure>().isBeingTargeted)
             {
                 closestDistanceSqe = dSqrToTarget;
                 target = treasures[i].gameObject;
             }
         }
         hadFirstTarget = true;
+        target.GetComponent<Treasure>().isBeingTargeted = true;
         return target;
+    }
+
+    public override void OnDestroy()
+    {
+        target.GetComponent<Treasure>().isBeingTargeted = false;
+        base.OnDestroy();
+        player.ChangeScore(pointValue, "Crab Killed");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject == target)
+        {
+            collision.transform.SetParent(this.gameObject.transform);
+        }
     }
 }

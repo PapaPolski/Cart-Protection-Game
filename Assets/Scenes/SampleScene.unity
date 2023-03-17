@@ -1305,6 +1305,7 @@ MonoBehaviour:
   coolDown: 0
   treasureOpenAudio: {fileID: 8300000, guid: c40923aa015881b4eb0174cc55f1ab51, type: 3}
   treasureCloseAudio: {fileID: 8300000, guid: 32010230c34dac94d97e8246e734a967, type: 3}
+  currentTreasuresInScene: []
 --- !u!212 &98439325
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6948,9 +6949,10 @@ MonoBehaviour:
   GhostsPerLevel: 0
   ghostsInLevel: 0
   remainingGhosts: 0
-  prefab: {fileID: 5323412864211969922, guid: 4ee752fabc105c342be5f867f0be4ec4, type: 3}
   doorOpen: {fileID: 50977516}
   doorClosed: {fileID: 576427584}
+  ghostPrefab: {fileID: 5323412864211969922, guid: 4ee752fabc105c342be5f867f0be4ec4, type: 3}
+  gremlinPrefab: {fileID: 7282698072657358974, guid: 379952cc0faf48c43a75d8d847a0056c, type: 3}
   spawnRadius: 15
   spawnDelayMin: 2
   spawnDelayMax: 4
@@ -20199,7 +20201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1421929739
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21294,6 +21296,7 @@ MonoBehaviour:
   healthUpAudio: {fileID: 8300000, guid: 69bfc5967b2bf8946917603f6d2f798a, type: 3}
   damageAudio: {fileID: 8300000, guid: 13e6aa37fcd0271409b6a4aab22f2a94, type: 3}
   characterInUse: {fileID: 0}
+  paused: 0
 --- !u!61 &1560314372
 BoxCollider2D:
   m_ObjectHideFlags: 0

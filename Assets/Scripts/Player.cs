@@ -427,7 +427,9 @@ public class Player : MonoBehaviour
 
         currentGrave = null;
 
-        int reward = Random.Range(0, 11);
+        // int reward = Random.Range(0, 11);
+        //DELETE BELOW TEST LINE
+        int reward = treasureChance + 1;
 
         if (reward >= 0 && reward <= 1)
         {
