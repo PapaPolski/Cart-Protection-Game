@@ -186,6 +186,8 @@ public class Player : MonoBehaviour
         else
         {
             SceneManager.UnloadSceneAsync(2);
+            if(SceneManager.GetSceneByName("OptionsMenu").isLoaded)
+                SceneManager.UnloadSceneAsync(3);
             Time.timeScale = 1f;
             cart.GetComponent<AudioSource>().Play();
             Cursor.visible = false;
@@ -256,6 +258,7 @@ public class Player : MonoBehaviour
             case 1:
                 gatheringTimeMax -= 0.1f;
                 BottomText("Faster Crafting!");
+                gatheringSlider.maxValue = gatheringTimeMax;
                 //Crafting Speed
                 break;
             case 2:
