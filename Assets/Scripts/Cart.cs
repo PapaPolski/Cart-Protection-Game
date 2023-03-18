@@ -84,7 +84,6 @@ public class Cart : MonoBehaviour
                     sliderBg.SetActive(false);
                 if(!aS.isPlaying)
                 {
-                    Debug.Log("Not playing");
                     aS.loop = true;
                     aS.PlayOneShot(cartRunningAudio);
                 }

@@ -34,20 +34,25 @@ public class EnemyParentScript : MonoBehaviour
 
     public virtual void OnDestroy()
     {
-        //float randomChance = Random.Range(0f, 10f);
-        float randomChance = 6;
-        if (randomChance > 5)
-        {
-            if (this.gameObject.scene.isLoaded)
-                Instantiate(grave, this.transform.position, Quaternion.identity);
-        }
+        player.totalGhostsKilled++;
+        spawner.currentGhostsAlive--;
+        spawner.remainingGhosts--;
+        spawner.UpdateUI();
+        player.ChangeScore(pointValue, "Ghost Killed");
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Spear")
         {
             player.GetComponent<AudioSource>().PlayOneShot(player.ghostKilledAudio);
+            player.ChangeScore(pointValue, "Enemy Killed");
+            if(transform.childCount > 0)
+            {
+                Debug.Log("I have a treasure!!!!");
+                Transform t = transform.GetChild(0);
+                t.SetParent(null);
+            }
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
         }

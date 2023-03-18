@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7282698072657358975}
   - component: {fileID: 7282698072657358962}
   - component: {fileID: 7282698072657358973}
+  - component: {fileID: 1330180905916162296}
   m_Layer: 0
   m_Name: Gremlin
   m_TagString: Untagged
@@ -125,3 +126,24 @@ MonoBehaviour:
   baseMoveSpeed: 1.5
   pointValue: 15
   grave: {fileID: 2814219882399858474, guid: 7e35352d9d18b8449bf223257dcd7067, type: 3}
+--- !u!50 &1330180905916162296
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282698072657358974}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -61,7 +61,7 @@ public class Spawner : MonoBehaviour
                 {
                     if (currentGhostsAlive < maxGhostsAtATime && ghostsInLevel < GhostsPerLevel)
                     {
-                        if (tC.currentTreasuresInScene.Count > 1)
+                        if (SpawnGremlin())
                             SpawnEnemy(gremlinPrefab);
                         else
                             SpawnEnemy(ghostPrefab);
@@ -92,6 +92,31 @@ public class Spawner : MonoBehaviour
         }
     }
 
+
+    bool SpawnGremlin()
+    {
+        bool noAvailable = true;
+
+        foreach (GameObject t in tC.currentTreasuresInScene)
+        {
+            if (t.GetComponent<Treasure>().isBeingTargeted == false)
+            {
+                noAvailable = false;
+                break;
+            }
+        }
+
+        if (noAvailable)
+        {
+            Debug.Log("Not spawning gremlin, all treasures are being targeted at the moment");
+            return false;
+        }
+        else
+        {
+            Debug.Log("There is at least one treasure available, spawning Gremlin");
+            return true;
+        }
+    }
     Vector3 RandomCircle(Vector3 center, float radius)
     {
         float ang = Random.value * 360;

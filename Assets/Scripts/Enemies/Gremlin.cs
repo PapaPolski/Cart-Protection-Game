@@ -5,7 +5,8 @@ using UnityEngine;
 public class Gremlin : EnemyParentScript
 {
     TreasureChest tC;
-    bool hadFirstTarget;
+    Treasure treasureTarget;
+    bool hadFirstTarget, escaping;
 
     // Start is called before the first frame update
     public override void Start()
@@ -14,6 +15,7 @@ public class Gremlin : EnemyParentScript
         base.Start();
         tC = GameObject.Find("TreasureChest").GetComponent<TreasureChest>();
         GetClosestTreasure(tC.currentTreasuresInScene);
+        escaping = false;
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class Gremlin : EnemyParentScript
 
     GameObject GetClosestTreasure(List<GameObject> treasures)
     {
+        Debug.Log("running check!");
         target = null;
         float closestDistanceSqe = Mathf.Infinity;
         Vector3 curPos = this.transform.position;
@@ -38,29 +41,44 @@ public class Gremlin : EnemyParentScript
         {
             Vector3 directionToTarget = treasures[i].transform.position - curPos;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if(dSqrToTarget < closestDistanceSqe && !target.GetComponent<Treasure>().isBeingTargeted)
+            if(dSqrToTarget < closestDistanceSqe && !treasures[i].GetComponent<Treasure>().isBeingTargeted)
             {
                 closestDistanceSqe = dSqrToTarget;
                 target = treasures[i].gameObject;
             }
+
         }
         hadFirstTarget = true;
-        target.GetComponent<Treasure>().isBeingTargeted = true;
+        treasureTarget = target.GetComponent<Treasure>();
+        treasureTarget.isBeingTargeted = true;
         return target;
     }
 
     public override void OnDestroy()
     {
-        target.GetComponent<Treasure>().isBeingTargeted = false;
+        treasureTarget.isBeingTargeted = false;
         base.OnDestroy();
-        player.ChangeScore(pointValue, "Crab Killed");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject == target)
+        Debug.Log(collision.gameObject.name);
+        base.OnTriggerEnter2D(collision);
+
+        if(collision.gameObject.tag == "Treasure" && collision.gameObject == target)
         {
             collision.transform.SetParent(this.gameObject.transform);
+            Debug.Log("Picked up Treasure!");
+            collision.transform.position = this.transform.position;
+            escaping = true;
+            baseMoveSpeed = 2;
+            target = GameObject.Find("Exit");//Start escape
+        }
+        if(collision.gameObject.name == "Exit" && escaping)
+        {
+            Debug.Log("I have reached the exit!");
+            player.ChangeScore(-100, "Crab escaped with treasure!");
+            Destroy(this.gameObject);
         }
     }
 }

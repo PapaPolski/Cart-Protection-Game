@@ -14,11 +14,18 @@ public class Ghost : EnemyParentScript
 
     public override void OnDestroy()
     {
-        player.totalGhostsKilled++;
-        spawner.currentGhostsAlive--;
-        spawner.remainingGhosts--;
-        spawner.UpdateUI();
         base.OnDestroy();
-        player.ChangeScore(pointValue, "Ghost Killed");
+        //float randomChance = Random.Range(0f, 10f);
+        float randomChance = 6;
+        if (randomChance > 5)
+        {
+            if (this.gameObject.scene.isLoaded)
+                Instantiate(grave, this.transform.position, Quaternion.identity);
+        }
+    }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
     }
 }
