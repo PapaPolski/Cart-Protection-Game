@@ -138,10 +138,13 @@ public class Spawner : MonoBehaviour
         aS.PlayOneShot(ghostsSpawnAudio);
         Vector3 pos = RandomCircle(this.transform.position, spawnRadius);
         Instantiate(enemyToSpawn, pos, Quaternion.identity);
-        
-        totalGhostsSpawned++;
-        currentGhostsAlive++;
-        ghostsInLevel++;
+
+        if (enemyToSpawn == ghostPrefab)
+        {
+            totalGhostsSpawned++;
+            currentGhostsAlive++;
+            ghostsInLevel++;
+        }
         spawnDelay = NewSpawnDelay(spawnDelayMin, spawnDelayMax);
         
         currentSpawnTimer = 0f;

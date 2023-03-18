@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMoveSpeed: 1.5
-  pointValue: 15
+  pointValue: 0
   grave: {fileID: 2814219882399858474, guid: 7e35352d9d18b8449bf223257dcd7067, type: 3}
 --- !u!50 &1330180905916162296
 Rigidbody2D:

@@ -15,6 +15,10 @@ public class Ghost : EnemyParentScript
     public override void OnDestroy()
     {
         base.OnDestroy();
+        player.totalGhostsKilled++;
+        spawner.currentGhostsAlive--;
+        spawner.remainingGhosts--;
+
         //float randomChance = Random.Range(0f, 10f);
         float randomChance = 6;
         if (randomChance > 5)

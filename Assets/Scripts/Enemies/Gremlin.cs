@@ -28,6 +28,10 @@ public class Gremlin : EnemyParentScript
             {
                 GetClosestTreasure(tC.currentTreasuresInScene);
             }
+            else
+            {
+                target = GameObject.Find("Exit");
+            }    
         }
     }
 

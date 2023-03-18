@@ -27,16 +27,9 @@ public class EnemyParentScript : MonoBehaviour
         }
     }
 
-    public void PickTarget()
-    {
-
-    }
-
     public virtual void OnDestroy()
     {
-        player.totalGhostsKilled++;
-        spawner.currentGhostsAlive--;
-        spawner.remainingGhosts--;
+        
         spawner.UpdateUI();
         player.ChangeScore(pointValue, "Ghost Killed");
     }
