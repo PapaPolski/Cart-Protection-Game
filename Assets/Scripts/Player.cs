@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     public float speed;
 
-    float _Horizontal, _Vertical, _MoveLimiter;
+    float _Horizontal, _Vertical, _MoveLimiter, maxTilt;
     Rigidbody2D rb2d;
     
     public Slider gatheringSlider;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public int totalTreasureFound, totalGhostsKilled, ghostsHighScore, lapsHighScore, treasureHighScore;
 
     string scoreLog;
-    SpriteRenderer character;
+    public SpriteRenderer character;
     public AudioSource aS;
     public AudioClip throwSpearAudio, equipSpearAudio, pickupTreasureAudio, waterTapAudio, ghostKilledAudio, healthUpAudio, damageAudio;
 
@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
 
     public bool paused;
 
+    Animator characterTiltAnimator;
+
     private void Awake()
     {
         gameOverPanel.SetActive(false);
@@ -57,7 +59,6 @@ public class Player : MonoBehaviour
     {
         paused = false;
         aS = GetComponent<AudioSource>();
-        character = GetComponent<SpriteRenderer>();
         character.sprite = characterInUse.characterSprite;
         speed = 8f;
         gatheringTimeMax = 1f;
@@ -85,6 +86,7 @@ public class Player : MonoBehaviour
         canAbilityBeUsed = true;
         dodgeSpeedMultiplier = 1;
         canTakeDamage = true;
+        characterTiltAnimator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -170,6 +172,18 @@ public class Player : MonoBehaviour
         {
             _Horizontal *= _MoveLimiter;
             _Vertical *= _MoveLimiter;
+        }
+        if(_Horizontal > 0)
+        {
+            characterTiltAnimator.SetTrigger("isTiltingRight");
+        }
+        else if(_Horizontal < 0) 
+        {
+            characterTiltAnimator.SetTrigger("isTiltingLeft");
+        }
+        else if(_Horizontal == 0)
+        {
+            characterTiltAnimator.SetTrigger("isIdle");
         }
         rb2d.velocity = new Vector2(_Horizontal * speed, _Vertical * speed * dodgeSpeedMultiplier) * CharacterSelector.instance.characterClasses[CharacterSelector.instance.currentCharacterSelected].speed;
     }
