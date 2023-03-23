@@ -321,7 +321,15 @@ public class Player : MonoBehaviour
             case 0:
                 break;
             case 1:
-                weaponRack.ChangeSpearAmount(1);
+                if (characterInUse.specialAbility != SpecialAbility.AutoReequip || characterInUse.specialAbility == SpecialAbility.AutoReequip && hasSpear)
+                {
+                    weaponRack.ChangeSpearAmount(1);
+
+                }
+                else if(characterInUse.specialAbility == SpecialAbility.AutoReequip && !hasSpear) 
+                {
+                    EquipSpear();
+                }
                 break;
             case 2:
                 AddWater();
@@ -385,16 +393,21 @@ public class Player : MonoBehaviour
     }
 
     public void ReequipSpear()
-{
-    if (weaponRack.currentSpearCount > 0 && !hasSpear)
+    {
+        if (weaponRack.currentSpearCount > 0 && !hasSpear)
+        {
+            weaponRack.ChangeSpearAmount(-1);
+            EquipSpear();
+        }
+    }
+
+    void EquipSpear()
     {
         hasSpear = true;
-        weaponRack.ChangeSpearAmount(-1);
         Vector3 spawnPosition = gameObject.transform.position;
         spawnPosition.x += 0.4f;
         Instantiate(spearPrefab, spawnPosition, Quaternion.identity, this.gameObject.transform);
     }
-}
 
     void AddWater()
     {
