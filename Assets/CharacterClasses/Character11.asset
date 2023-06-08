@@ -19,8 +19,11 @@ MonoBehaviour:
   cartSpeedModifier: 1
   scoreModifier: 1
   specialAbility: 2
+  specialAbilityCooldown: 0
   unlockedFromStart: 0
   unlockConditionAmount: 500
-  unlockText: beat the game
+  unlockText: find every korok seed
   playerPrefKey: Hiscore
   flavorText: 'test text text test '
+  abilityIcon: {fileID: 0}
+  abilityName: 

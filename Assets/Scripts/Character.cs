@@ -19,6 +19,8 @@ public class Character : ScriptableObject
     public string unlockText;
     public string playerPrefKey;
     public string flavorText;
+    public Sprite abilityIcon;
+    public string abilityName;
 }
 
 public enum SpecialAbility

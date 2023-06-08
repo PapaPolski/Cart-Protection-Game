@@ -8,10 +8,10 @@ public class CharacterSelector : MonoBehaviour
 {
     public static CharacterSelector instance { get; private set; }
     public int currentCharacterSelected;
-    public Image characterDisplay;
+    public Image characterDisplay, abilityIcon;
 
     public Character[] characterClasses;
-    public TextMeshProUGUI characterName;
+    public TextMeshProUGUI characterName, abilityName;
     public GameObject startButton, unlockCondition, characterPanel;
 
     public TextMeshProUGUI flavorText;
@@ -124,7 +124,7 @@ public class CharacterSelector : MonoBehaviour
             characterName.text = characterClasses[currentCharacterSelected].characterName;
             if (!startButton.active)
                 startButton.SetActive(true);
-            unlockCondition.SetActive(false);
+            unlockCondition.transform.parent.gameObject.SetActive(false);
             characterPanel.SetActive(true);
         }
         else
@@ -135,7 +135,7 @@ public class CharacterSelector : MonoBehaviour
             characterName.text = characterClasses[currentCharacterSelected].characterName;
             if (startButton.active)
                 startButton.SetActive(false);
-            unlockCondition.SetActive(true);
+            unlockCondition.transform.parent.gameObject.SetActive(true);
             characterPanel.SetActive(false);
         }
         CharacterPanelInfo();
@@ -145,6 +145,16 @@ public class CharacterSelector : MonoBehaviour
     {
         flavorText.text = characterClasses[currentCharacterSelected].flavorText;
         unlockCondition.GetComponent<TextMeshProUGUI>().text = characterClasses[currentCharacterSelected].unlockText;
+        if (characterClasses[currentCharacterSelected].abilityIcon != null)
+        {
+            abilityIcon.sprite = characterClasses[currentCharacterSelected].abilityIcon;
+            abilityIcon.color = Color.white;
+        }
+        else
+        {
+            abilityIcon.color = Color.clear;
+        }
+        abilityName.text = characterClasses[currentCharacterSelected].abilityName;
 
         speedStat.OnCharacterChange(characterClasses[currentCharacterSelected].speed);
         craftStat.OnCharacterChange(characterClasses[currentCharacterSelected].craftSpeedModifier);

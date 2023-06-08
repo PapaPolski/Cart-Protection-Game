@@ -18,7 +18,7 @@ MonoBehaviour:
   craftSpeedModifier: 1
   cartSpeedModifier: 1
   scoreModifier: 1
-  specialAbility: 0
+  specialAbility: 2
   specialAbilityCooldown: 2
   unlockedFromStart: 1
   unlockConditionAmount: 0

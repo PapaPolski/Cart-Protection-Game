@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Pinky
   characterSprite: {fileID: 21300000, guid: 7a046baaba194ca4b833c92c88d9e6c9, type: 3}
-  speed: 1
-  craftSpeedModifier: 1
-  cartSpeedModifier: 1
-  scoreModifier: 1
+  speed: 2
+  craftSpeedModifier: 2
+  cartSpeedModifier: 2
+  scoreModifier: 2
   specialAbility: 3
   specialAbilityCooldown: 0.2
   unlockedFromStart: 1
